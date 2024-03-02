@@ -1,22 +1,28 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { IMember } from "../../models/Member";
 import Button from "../Button";
 import FieldText from "../FieldText";
-import ListaSuspensa from "../ListaSuspensa";
-import "./Formulario.css";
+import SelectList from "../SelectList";
+import "./Form.css";
 
-const Formulario = (props) => {
+interface FormProps {
+  teams: string[]
+  onNewMemberRegistered: (member: IMember) => void
+}
+
+const Form = ({teams, onNewMemberRegistered}: FormProps) => {
   const [nome, setNome] = useState("");
   const [cargo, setCargo] = useState("");
   const [imagem, setImagem] = useState("");
   const [time, setTime] = useState("");
 
-  const aoSalvar = (evento) => {
-    evento.preventDefault();
-    props.aoColaboradorCadastrado({
-      nome,
-      cargo,
-      imagem,
-      time,
+  const onSave = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onNewMemberRegistered({
+      name: nome,
+      role: cargo,
+      image: imagem,
+      team: time,
     });
     setNome("");
     setCargo("");
@@ -25,8 +31,8 @@ const Formulario = (props) => {
   };
 
   return (
-    <section className="formulario">
-      <form onSubmit={aoSalvar}>
+    <section className="form">
+      <form onSubmit={onSave}>
         <h2>Preencha os dados para criar o card do colaborador</h2>
         <FieldText
           required={true}
@@ -47,11 +53,12 @@ const Formulario = (props) => {
           placeholder="Digite o endereço da imagem"
           value={imagem}
           onChange={(value) => setImagem(value)}
+          required={true}
         />
-        <ListaSuspensa
-          obrigatorio={true}
+        <SelectList
+          required={true}
           label="Time"
-          itens={props.times}
+          items={teams}
           value={time}
           onChange={(value) => setTime(value)}
         />
@@ -61,4 +68,4 @@ const Formulario = (props) => {
   );
 };
 
-export default Formulario;
+export default Form;
