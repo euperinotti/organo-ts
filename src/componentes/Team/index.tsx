@@ -16,7 +16,7 @@ const Team = ({ mainColor, secondColor, name, members }: TeamProps) => {
       <h3 style={{ borderColor: mainColor }}>{name}</h3>
       <div className="colaboradores">
         {members.map((member) => (
-          <Member {...member} />
+          <Member {...member} backgroundColor={secondColor}/>
         ))}
       </div>
     </section>
