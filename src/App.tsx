@@ -43,11 +43,11 @@ function App() {
     },
   ];
 
-  const [colaboradores, setColaboradores] = useState<IMember[]>([]);
+  const [members, setMembers] = useState<IMember[]>([]);
 
-  const onNewMemberRegistered = (colaborador: IMember) => {
+  const onNewMemberRegistered = (member: IMember) => {
     debugger;
-    setColaboradores([...colaboradores, colaborador]);
+    setMembers([...members, member]);
   };
 
   return (
@@ -64,7 +64,7 @@ function App() {
           name={team.name}
           mainColor={team.corPrimaria}
           secondColor={team.corSecundaria}
-          members={colaboradores.filter((member) => member.team === team.name)}
+          members={members.filter((member) => member.team === team.name)}
         />
       ))}
     </div>

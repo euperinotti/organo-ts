@@ -7,6 +7,7 @@ interface FieldTextProps {
   onChange: (value: string) => void;
   required: boolean;
   placeholder: string;
+  type?: "text" | "password" | "date" | "email" | "number";
 }
 
 const FieldText = ({
@@ -15,6 +16,7 @@ const FieldText = ({
   onChange,
   required,
   placeholder,
+  type = "text",
 }: FieldTextProps) => {
   const newPlaceholder = `${placeholder}...`;
 
@@ -30,6 +32,7 @@ const FieldText = ({
         onChange={handleInput}
         required={required}
         placeholder={newPlaceholder}
+        type={type}
       />
     </div>
   );

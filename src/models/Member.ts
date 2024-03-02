@@ -4,4 +4,5 @@ export interface IMember {
   role: string;
   team: string;
   backgroundColor?: string;
+  date: string;
 }

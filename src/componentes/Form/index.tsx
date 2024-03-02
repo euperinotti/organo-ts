@@ -6,28 +6,31 @@ import SelectList from "../SelectList";
 import "./Form.css";
 
 interface FormProps {
-  teams: string[]
-  onNewMemberRegistered: (member: IMember) => void
+  teams: string[];
+  onNewMemberRegistered: (member: IMember) => void;
 }
 
-const Form = ({teams, onNewMemberRegistered}: FormProps) => {
-  const [nome, setNome] = useState("");
-  const [cargo, setCargo] = useState("");
-  const [imagem, setImagem] = useState("");
-  const [time, setTime] = useState("");
+const Form = ({ teams, onNewMemberRegistered }: FormProps) => {
+
+  const [member, setMember] = useState<IMember>({
+    name: "",
+    image: "",
+    role: "",
+    team: "",
+    date: "",
+  });
 
   const onSave = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onNewMemberRegistered({
-      name: nome,
-      role: cargo,
-      image: imagem,
-      team: time,
+      name: member.name,
+      role: member.role,
+      image: member.image,
+      team: member.team,
+      date: member.date,
     });
-    setNome("");
-    setCargo("");
-    setImagem("");
-    setTime("");
+
+    setMember({ name: "", image: "", role: "", team: "", date: "" });
   };
 
   return (
@@ -38,29 +41,37 @@ const Form = ({teams, onNewMemberRegistered}: FormProps) => {
           required={true}
           label="Nome"
           placeholder="Digite seu nome"
-          value={nome}
-          onChange={(value) => setNome(value)}
+          value={member.name}
+          onChange={(value) => setMember({ ...member, name: value })}
         />
         <FieldText
           required={true}
           label="Cargo"
           placeholder="Digite seu cargo"
-          value={cargo}
-          onChange={(value) => setCargo(value)}
+          value={member.role}
+          onChange={(value) => setMember({ ...member, role: value })}
         />
         <FieldText
           label="Imagem"
           placeholder="Digite o endereço da imagem"
-          value={imagem}
-          onChange={(value) => setImagem(value)}
+          value={member.image}
+          onChange={(value) => setMember({ ...member, image: value })}
           required={true}
+        />
+        <FieldText
+          label="Data de entrada no time"
+          placeholder=""
+          value={member.date!}
+          onChange={(value) => setMember({ ...member, date: value })}
+          required={true}
+          type="date"
         />
         <SelectList
           required={true}
           label="Time"
           items={teams}
-          value={time}
-          onChange={(value) => setTime(value)}
+          value={member.team}
+          onChange={(value) => setMember({ ...member, team: value })}
         />
         <Button>Criar Card</Button>
       </form>
