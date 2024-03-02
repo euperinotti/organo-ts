@@ -1,3 +1,4 @@
+import { ChangeEvent, SyntheticEvent } from "react";
 import "./FieldText.css";
 
 interface FieldTextProps {
@@ -17,7 +18,7 @@ const FieldText = ({
 }: FieldTextProps) => {
   const newPlaceholder = `${placeholder}...`;
 
-  const handleInput = (evento: any) => {
+  const handleInput = (evento: ChangeEvent<HTMLInputElement>) => {
     onChange(evento.target.value);
   };
 
