@@ -4,7 +4,7 @@ export interface MemberProps {
     name: string;
     image: string;
     role: string;
-    backgroundColor: string;
+    backgroundColor?: string;
 }
 
 const Member = ({ name, image, role, backgroundColor }: MemberProps) => {

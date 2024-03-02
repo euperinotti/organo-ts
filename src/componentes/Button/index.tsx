@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import "./Button.css";
 
 interface ButtonProps {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 const Button = ({ children }: ButtonProps) => {
