@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent } from "react";
+import { ChangeEvent } from "react";
 import "./FieldText.css";
 
 interface FieldTextProps {
@@ -23,7 +23,7 @@ const FieldText = ({
   };
 
   return (
-    <div className="campo-texto">
+    <div className="field-text">
       <label>{label}</label>
       <input
         value={value}
